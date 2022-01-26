@@ -1,0 +1,26 @@
+version: '3'
+
+networks:
+  main_net:
+    driver: bridge
+
+services:
+  mysql:
+    image: mysql
+    container_name: pokebase_sql
+    environment:
+      - MYSQL_DATABASE=pokebase
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin
+      - MYSQL_ROOT_PASSWORD=admin
+      - ACCEPT_EULA=Y
+    ports:
+      - '3306:3306'
+    networks:
+      - main_net
+    volumes:
+      - db-data:/var/lib/mysql
+
+volumes:
+  db-data:
+    driver: local
