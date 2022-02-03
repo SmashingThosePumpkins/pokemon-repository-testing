@@ -6,7 +6,7 @@ import br.com.smashingthosepumpkins.core.model.PokemonType;
  * @author Pablo A. G. Silva Jr. on 31/01/2022
  * @project pokemon-repository-testing
  */
-public enum TestPokemonType {
+public enum PokemonTestType {
     NORMAL(1),
     FIRE(2),
     WATER(3),
@@ -29,7 +29,7 @@ public enum TestPokemonType {
 
     private final int id;
 
-    TestPokemonType(int id) {
+    PokemonTestType(int id) {
         this.id = id;
     }
 

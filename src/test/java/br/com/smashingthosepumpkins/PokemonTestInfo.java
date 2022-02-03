@@ -1,15 +1,14 @@
 package br.com.smashingthosepumpkins;
 
-import br.com.smashingthosepumpkins.core.model.PokemonEntity;
 import br.com.smashingthosepumpkins.core.model.PokemonInfo;
 
-import static br.com.smashingthosepumpkins.TestPokemonType.*;
+import static br.com.smashingthosepumpkins.PokemonTestType.*;
 
 /**
  * @author Pablo A. G. Silva Jr. on 31/01/2022
  * @project pokemon-repository-testing
  */
-public enum TestPokemonInfo {
+public enum PokemonTestInfo {
     BULBASAUR(1, GRASS, POISON),
     IVYSAUR(2, GRASS, POISON),
     VENUSAUR(3, GRASS, POISON),
@@ -163,12 +162,12 @@ public enum TestPokemonInfo {
     MEW(151, PSYCHIC, UNKNOWN);
 
     private final int pokedexId;
-    private final TestPokemonType primaryType;
-    private final TestPokemonType secondaryType;
+    private final PokemonTestType primaryType;
+    private final PokemonTestType secondaryType;
 
-    TestPokemonInfo(int pokedexId,
-                    TestPokemonType primaryType,
-                    TestPokemonType secondaryType) {
+    PokemonTestInfo(int pokedexId,
+                    PokemonTestType primaryType,
+                    PokemonTestType secondaryType) {
         this.pokedexId = pokedexId;
         this.primaryType = primaryType;
         this.secondaryType = secondaryType;
@@ -178,11 +177,11 @@ public enum TestPokemonInfo {
         return pokedexId;
     }
 
-    public TestPokemonType getPrimaryType() {
+    public PokemonTestType getPrimaryType() {
         return primaryType;
     }
 
-    public TestPokemonType getSecondaryType() {
+    public PokemonTestType getSecondaryType() {
         return secondaryType;
     }
 

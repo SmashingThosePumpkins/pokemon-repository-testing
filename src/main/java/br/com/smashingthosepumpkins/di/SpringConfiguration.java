@@ -1,16 +1,12 @@
 package br.com.smashingthosepumpkins.di;
 
+import br.com.smashingthosepumpkins.app.ShutdownService;
 import br.com.smashingthosepumpkins.di.env.ApplicationSettings;
 import br.com.smashingthosepumpkins.di.env.DatabaseSettings;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.*;
 
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -19,7 +15,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static br.com.smashingthosepumpkins.app.ShutdownService.shutdown;
 import static com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES;
 import static java.lang.System.getenv;
 
@@ -87,7 +82,6 @@ public class SpringConfiguration {
 
         } catch (IOException e) {
             e.printStackTrace();
-            shutdown();
             return null;
         }
     }
