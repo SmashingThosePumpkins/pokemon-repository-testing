@@ -12,7 +12,6 @@ import java.util.Random;
 
 import static br.com.smashingthosepumpkins.TestPokemonInfo.*;
 import static br.com.smashingthosepumpkins.util.PokemonUtil.buildPokemon;
-import static br.com.smashingthosepumpkins.util.PokemonUtil.pokemonListContains;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -36,14 +35,13 @@ class PokemonRepositoryTest {
 
     @Test
     public void whenHighestLevelMethodIsCalled_shouldReturnPinsir() {
-        List<PokemonEntity> list = Arrays.asList(
-                buildPokemon("Machoke", MACHOKE, 35),
-                buildPokemon("Raichu", RAICHU, 25),
-                buildPokemon("Pinsir", PINSIR, 60),
-                buildPokemon("Kabuto", KABUTO, 30),
-                buildPokemon("Ninetales", NINETALES, 40),
-                buildPokemon("Dewgong", DEWGONG, 40)
-        );
+        PokemonEntity machoke = buildPokemon("Machoke", MACHOKE, 35);
+        PokemonEntity raichu = buildPokemon("Raichu", RAICHU, 25);
+        PokemonEntity pinsir = buildPokemon("Pinsir", PINSIR, 60);
+        PokemonEntity kabuto = buildPokemon("Kabuto", KABUTO, 30);
+        PokemonEntity ninetales = buildPokemon("Ninetales", NINETALES, 40);
+        PokemonEntity dewgong = buildPokemon("Dewgong", DEWGONG, 40);
+        List<PokemonEntity> list = Arrays.asList(machoke, raichu, pinsir, kabuto, ninetales, dewgong);
         when(daoMock.getAllEntries()).thenReturn(list);
 
         PokemonEntity result = instance.getHighestLevel();
@@ -54,60 +52,63 @@ class PokemonRepositoryTest {
 
     @Test
     public void whenHighestLevelMethodIsCalled_shouldReturnPinsirNinetalesAndDewgong() {
-        List<PokemonEntity> list = Arrays.asList(
-                buildPokemon("Machoke", MACHOKE, 35),
-                buildPokemon("Raichu", RAICHU, 25),
-                buildPokemon("Pinsir", PINSIR, 60),
-                buildPokemon("Kabuto", KABUTO, 30),
-                buildPokemon("Ninetales", NINETALES, 40),
-                buildPokemon("Dewgong", DEWGONG, 40)
-        );
+        PokemonEntity machoke = buildPokemon("Machoke", MACHOKE, 35);
+        PokemonEntity raichu = buildPokemon("Raichu", RAICHU, 25);
+        PokemonEntity pinsir = buildPokemon("Pinsir", PINSIR, 60);
+        PokemonEntity kabuto = buildPokemon("Kabuto", KABUTO, 30);
+        PokemonEntity ninetales = buildPokemon("Ninetales", NINETALES, 40);
+        PokemonEntity dewgong = buildPokemon("Dewgong", DEWGONG, 40);
+        List<PokemonEntity> list = Arrays.asList(machoke, raichu, pinsir, kabuto, ninetales, dewgong);
         when(daoMock.getAllEntries()).thenReturn(list);
 
         List<PokemonEntity> result = instance.getHighestLevel(3);
 
         assertNotNull(result);
-        assertTrue(pokemonListContains(result, PINSIR));
-        assertTrue(pokemonListContains(result, NINETALES));
-        assertTrue(pokemonListContains(result, DEWGONG));
+        assertFalse(result.contains(machoke));
+        assertFalse(result.contains(raichu));
+        assertTrue(result.contains(pinsir));
+        assertFalse(result.contains(kabuto));
+        assertTrue(result.contains(ninetales));
+        assertTrue(result.contains(dewgong));
     }
 
     @Test
     public void whenLowestLevelMethodIsCalled_shouldReturnRaichu() {
-        List<PokemonEntity> list = Arrays.asList(
-                buildPokemon("Machoke", MACHOKE, 35),
-                buildPokemon("Raichu", RAICHU, 25),
-                buildPokemon("Pinsir", PINSIR, 60),
-                buildPokemon("Kabuto", KABUTO, 30),
-                buildPokemon("Ninetales", NINETALES, 40),
-                buildPokemon("Dewgong", DEWGONG, 40)
-        );
+        PokemonEntity machoke = buildPokemon("Machoke", MACHOKE, 35);
+        PokemonEntity raichu = buildPokemon("Raichu", RAICHU, 25);
+        PokemonEntity pinsir = buildPokemon("Pinsir", PINSIR, 60);
+        PokemonEntity kabuto = buildPokemon("Kabuto", KABUTO, 30);
+        PokemonEntity ninetales = buildPokemon("Ninetales", NINETALES, 40);
+        PokemonEntity dewgong = buildPokemon("Dewgong", DEWGONG, 40);
+        List<PokemonEntity> list = Arrays.asList(machoke, raichu, pinsir, kabuto, ninetales, dewgong);
         when(daoMock.getAllEntries()).thenReturn(list);
 
         PokemonEntity result = instance.getLowestLevel();
 
         assertNotNull(result);
-        assertEquals(RAICHU.asInfo(), result.getPokemonInfo());
+        assertEquals(raichu, result);
     }
 
     @Test
     public void whenLowestLevelMethodIsCalled_shouldReturnRaichuKabutoAndMachoke() {
-        List<PokemonEntity> list = Arrays.asList(
-                buildPokemon("Machoke", MACHOKE, 35),
-                buildPokemon("Raichu", RAICHU, 25),
-                buildPokemon("Pinsir", PINSIR, 60),
-                buildPokemon("Kabuto", KABUTO, 30),
-                buildPokemon("Ninetales", NINETALES, 40),
-                buildPokemon("Dewgong", DEWGONG, 40)
-        );
+        PokemonEntity machoke = buildPokemon("Machoke", MACHOKE, 35);
+        PokemonEntity raichu = buildPokemon("Raichu", RAICHU, 25);
+        PokemonEntity pinsir = buildPokemon("Pinsir", PINSIR, 60);
+        PokemonEntity kabuto = buildPokemon("Kabuto", KABUTO, 30);
+        PokemonEntity ninetales = buildPokemon("Ninetales", NINETALES, 40);
+        PokemonEntity dewgong = buildPokemon("Dewgong", DEWGONG, 40);
+        List<PokemonEntity> list = Arrays.asList(machoke, raichu, pinsir, kabuto, ninetales, dewgong);
         when(daoMock.getAllEntries()).thenReturn(list);
 
         List<PokemonEntity> result = instance.getLowestLevel(3);
 
         assertNotNull(result);
-        assertTrue(pokemonListContains(result, RAICHU));
-        assertTrue(pokemonListContains(result, KABUTO));
-        assertTrue(pokemonListContains(result, MACHOKE));
+        assertTrue(result.contains(machoke));
+        assertTrue(result.contains(raichu));
+        assertFalse(result.contains(pinsir));
+        assertTrue(result.contains(kabuto));
+        assertFalse(result.contains(ninetales));
+        assertFalse(result.contains(dewgong));
     }
 
     @Test

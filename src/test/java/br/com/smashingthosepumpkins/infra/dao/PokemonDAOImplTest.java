@@ -136,9 +136,9 @@ public class PokemonDAOImplTest {
         assertEquals(2, result.size());
 
         assertTrue(result.contains(ekans));
-        assertTrue(result.contains(venonat));
+        assertFalse(result.contains(venonat));
         assertFalse(result.contains(bulbasaur));
-        assertFalse(result.contains(zubat));
+        assertTrue(result.contains(zubat));
     }
 
     @Test
@@ -154,9 +154,9 @@ public class PokemonDAOImplTest {
         assertNotNull(result);
         assertEquals(2, result.size());
 
-        assertTrue(result.contains(ekans));
+        assertFalse(result.contains(ekans));
         assertTrue(result.contains(venonat));
-        assertFalse(result.contains(bulbasaur));
+        assertTrue(result.contains(bulbasaur));
         assertFalse(result.contains(zubat));
     }
 
